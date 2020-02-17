@@ -2,7 +2,7 @@
 """
 Created on Mon Feb 10 12:30:14 2020
 
-@author: MOHIT, Saloni
+@author: Mohit, Saloni
 """
 import os
 import networkx as nx
@@ -55,7 +55,7 @@ for e in G.edges.data():
     labels.append(e[2]['weight'])
 #print(labels)
 
-betweeness_values=nx.betweenness_centrality(G)
+betweeness_values=nx.betweenness_centrality(G,normalized=False,weight='weight')
 
 eigen_centrality = nx.eigenvector_centrality(G)
 #eigen_centrality2 = nx.eigenvector_centrality(G,max_iter=10000000000000000000000000000000)
