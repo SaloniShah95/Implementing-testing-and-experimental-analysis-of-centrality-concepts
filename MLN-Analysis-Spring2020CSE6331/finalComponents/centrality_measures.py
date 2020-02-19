@@ -49,9 +49,9 @@ for edge in Edges:
     G.add_edge(edge[0],edge[1],weight=edge[2])
 
 
-labels = []
-for e in G.edges.data():
-    labels.append(e[2]['weight'])
+#labels = []
+#for e in G.edges.data():
+ #   labels.append(e[2]['weight'])
 #print(labels)
 
 betweeness_values=nx.betweenness_centrality(G,normalized=False,weight='weight')
