@@ -1,0 +1,21 @@
+American Airlines
+8
+10
+Dallas
+New York JFK
+Atlanta
+Seattle
+New Orleans
+Los Angeles
+Washington DC
+Boston
+Dallas,New York JFK,2.3
+Seattle,Dallas,1.2
+Los Angeles,Dallas,3.4
+Boston,New York JFK,4.2
+Washington DC,Los Angeles,1.1
+Atlanta,Dallas,2.9
+New York JFK,Atlanta,5.1
+Atlanta,Los Angeles,0.9
+Washington DC,Atlanta,0.5
+Seattle,Washington DC,1.4
