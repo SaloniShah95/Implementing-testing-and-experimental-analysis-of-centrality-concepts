@@ -2,7 +2,7 @@
 """
 Created on Mon Feb 10 12:30:14 2020
 
-@author: MOHIT
+@author: Mohit, Saloni
 """
 import os
 import networkx as nx
