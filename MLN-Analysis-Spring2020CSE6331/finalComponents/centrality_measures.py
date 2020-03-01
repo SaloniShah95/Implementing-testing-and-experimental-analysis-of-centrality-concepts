@@ -7,6 +7,7 @@ Created on Mon Feb 10 12:30:14 2020
 import os
 import networkx as nx
 import matplotlib.pyplot as plt
+import operator
 
 def computeCentrailty(Vertices,Edges):
     G = nx.Graph()
@@ -14,32 +15,33 @@ def computeCentrailty(Vertices,Edges):
     for edge in Edges:
         #print(edge[2])
         G.add_edge(edge[0],edge[1],weight=edge[2])
-
         '''
         labels = []
         for e in G.edges.data():
             labels.append(e[2]['weight'])
-
-        nx.draw(G,with_labels=True,edge_labels=labels)  # networkx draw()
-        nx.draw(G,with_labels=True)
-        plt.plot()
         '''
+    nx.draw(G,with_labels=True)  # networkx draw()
+    plt.plot()
+
     betweeness_values=nx.betweenness_centrality(G,normalized=True,weight='weight')
-    print("Betweeness",betweeness_values)
+    #print("Betweeness",betweeness_values)
 
     eigen_centrality = nx.eigenvector_centrality(G)
-    print("Eigen",eigen_centrality)
+    #print("Eigen",eigen_centrality)
     #eigen_centrality2 = nx.eigenvector_centrality(G,max_iter=10000000000000000000000000000000)
     #comparing the 2
     #comparision = eigen_centrality == eigen_centrality2
 
-    max_eigen = max(eigen_centrality.values())
-    max_vertex = max(eigen_centrality, key=eigen_centrality.get) 
+    max_eigen = dict(sorted(eigen_centrality.items(), key=operator.itemgetter(1), reverse=True)[:5])
+    #max_eigen = max(eigen_centrality.values())
+    #max_vertex = max(eigen_centrality, key=eigen_centrality.get) 
 
-    max_between = max(betweeness_values.values())
-    max_vertex_b = max(betweeness_values, key=eigen_centrality.get) 
-
-    closeness_values = nx.closeness_centrality(G)
+    max_between = dict(sorted(betweeness_values.items(), key=operator.itemgetter(1), reverse=True)[:5])
+    #max_between = max(betweeness_values.values())
+    #max_vertex_b = max(betweeness_values, key=eigen_centrality.get) 
+    print("Max Eigen vertices",max_eigen)
+    print("Max Betweeness vertices",max_between)
+    #closeness_values = nx.closeness_centrality(G)
 
 #Take input file. Defining as constant for now.
 
@@ -51,7 +53,7 @@ def parse_input(filename):
         f.close()
     return content
 
-dataFile="\BetweenessTest.txt"
+dataFile="\Airline-HoMLN\Delta"
 path="\MLN-Analysis-Spring2020CSE6331\IMDB-Top-500-Actors\Layers" 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 #Constant used. Might need to adjust if structure of folder is changed
