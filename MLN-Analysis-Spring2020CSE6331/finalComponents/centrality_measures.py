@@ -7,6 +7,7 @@ Created on Mon Feb 10 12:30:14 2020
 import os
 import networkx as nx
 import matplotlib.pyplot as plt
+import operator
 
 def computeCentrailty(Vertices,Edges):
     G = nx.Graph()
@@ -15,7 +16,7 @@ def computeCentrailty(Vertices,Edges):
         #print(edge[2])
         G.add_edge(edge[0],edge[1],weight=edge[2])
 
-        '''
+        
         labels = []
         for e in G.edges.data():
             labels.append(e[2]['weight'])
@@ -23,24 +24,26 @@ def computeCentrailty(Vertices,Edges):
         nx.draw(G,with_labels=True,edge_labels=labels)  # networkx draw()
         nx.draw(G,with_labels=True)
         plt.plot()
-        '''
+        
     betweeness_values=nx.betweenness_centrality(G,normalized=True,weight='weight')
-    print("Betweeness",betweeness_values)
-
     eigen_centrality = nx.eigenvector_centrality(G)
-    print("Eigen",eigen_centrality)
     #eigen_centrality2 = nx.eigenvector_centrality(G,max_iter=10000000000000000000000000000000)
     #comparing the 2
     #comparision = eigen_centrality == eigen_centrality2
 
-    max_eigen = max(eigen_centrality.values())
-    max_vertex = max(eigen_centrality, key=eigen_centrality.get) 
-
-    max_between = max(betweeness_values.values())
-    max_vertex_b = max(betweeness_values, key=eigen_centrality.get) 
-
-    closeness_values = nx.closeness_centrality(G)
-
+    sorted_between = dict(sorted(betweeness_values.items(), key=operator.itemgetter(1), reverse=True)[:5])
+    print("Top 5 nodes with maximum betweenness centrality: \n",sorted_between)
+    
+    sorted_eigen = dict(sorted(eigen_centrality.items(), key=operator.itemgetter(1), reverse=True)[:5])
+    print("Top 5odes with maximum betweenness centrality: \n",sorted_eigen)
+    
+    setA = set( sorted_between )
+    setB = set( sorted_eigen ) 
+    
+    for item in setA.intersection(setB):
+        print(item)
+     
+   
 #Take input file. Defining as constant for now.
 
 def parse_input(filename):
@@ -51,8 +54,8 @@ def parse_input(filename):
         f.close()
     return content
 
-dataFile="\BetweenessTest.txt"
-path="\MLN-Analysis-Spring2020CSE6331\IMDB-Top-500-Actors\Layers" 
+dataFile="\Allegiant.txt"
+path="\MLN-Analysis-Spring2020CSE6331\IMDB-Top-500-Actors\Layers\centralityTestData" 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 #Constant used. Might need to adjust if structure of folder is changed
 target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
