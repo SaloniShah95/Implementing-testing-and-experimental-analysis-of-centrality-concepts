@@ -1,0 +1,12 @@
+AND composition: call Abhishek's code in C/C++ from out code 
+compare it with ground truth
+run the code on snap database
+find different graphs with different top eigen and betweeness
+Driver function 
+write the dictionary to an o/p file - all nodes in sorted (desc) 
+compare page rank with eigen vector closeness algorithm
+find complexity of both the algorithms
+
+measures:
+accuracy 
+neighbours
