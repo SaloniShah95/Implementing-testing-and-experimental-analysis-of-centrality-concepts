@@ -16,8 +16,15 @@ class CentralityMeasure(object):
         self.edges = []
         self.edge_input = edge_input
         self.centrality = centrality
-        
-        
+        self.dataset = '' 
+    
+    def set_dataset(self, ds_name):
+        self.dataset = ds_name
+        return None
+    
+    def get_dataset_name(self):
+        return self.dataset
+    
     def parse_input(self,filename):
         with open(filename) as f:
             content = f.readlines()
@@ -72,6 +79,8 @@ class CentralityMeasure(object):
                
         nameOfAirline=data[0]
         print("name of the airline: ",nameOfAirline)
+        self.set_dataset(nameOfAirline)
+        
         #Check if 1st line is name of airline
         if not isinstance(nameOfAirline,str):
             self.sanityCheck=False

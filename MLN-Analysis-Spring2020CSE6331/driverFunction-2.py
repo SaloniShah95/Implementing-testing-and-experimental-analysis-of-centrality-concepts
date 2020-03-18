@@ -8,6 +8,7 @@ import sys
 import os.path
 import json
 import csv
+import operator
 
 from finalComponents.centrality_measures import CentralityMeasure
 
@@ -81,19 +82,31 @@ def main():
                     #creating a centrality object
                     for i in layers:
                         print("Centrality: ",Centrality)
-                        
+                        hubs = {}
                         cm = CentralityMeasure(edge_input=mlnFilePaths[i.strip()],centrality=Centrality)
                         C_values = cm.computeCentrality()
+                        c_count = 0
+                        _sum = 0
+                        for key in C_values:
+                            c_count += 1
+                            _sum += C_values[key]
+                        average = _sum/c_count 
+                        hubs = dict((k,v) for k,v in C_values.items() if v >= average )
+                        x = len(hubs)
+                        y = len(C_values)
+                        max_V = max(hubs.items(), key=operator.itemgetter(1))[0]
+                        min_V = min(hubs.items(), key=operator.itemgetter(1))[0]
+                        sum_V = sum(hubs.values())
+                        nameOfDataset = cm.dataset
                         
-                        
-                       
                         #Writing the output to the output directory
                         if count in outputDir.keys():
-                           
+                            
                             fileString = str(outputDir[count])
-                            filename = i+"_"+Centrality+".csv"
+                            filename1 = i+"_"+Centrality+".txt"
+                            filename2 = i+"_"+Centrality+"_hubs.txt"
                             directory_path = fileString + "\\" + "expression"+str(count)
-                            print("writing the output to ",directory_path+filename)
+                            print("writing the output to ",directory_path+filename1)
                             try:
                                 os.path.exists(directory_path) 
                             except FileNotFoundError:
@@ -101,12 +114,32 @@ def main():
                             
                             try:
                                 len(C_values)>0
-                                with open(directory_path+filename,'w+') as f:
-                                    writer = csv.writer(f)
+                                with open(directory_path+filename1,'w+') as f:
+                                    f.write(nameOfDataset+'\n\n')
                                     for key, value in C_values.items():
-                                        writer.writerow([key, value])
+                                        f.write('%s\t%s\n'%(key, value))
+                                    
+                                    '''writer = csv.writer(f)
+                                    writer.writerow(nameOfDataset)
+                                    for key, value in C_values.items():
+                                        writer.writerow([key, value])'''
+                                        
+                                print("writing the hubs to ",directory_path+filename2)
+                                with open(directory_path+filename2,'w+') as f2:
+                                    f2.write(nameOfDataset)
+                                    f2.write('\nx = Number of hubs'+
+                                             '\ny = Total number of nodes'+
+                                             '\nx/y = %s/%s'%(x,y)+
+                                             '\nAverage Value, Min Value, Max Value, Sum'+
+                                             '\n%s, %s, %s, %s\n\n'%(average,min_V,max_V,sum_V))
+                                    for key, value in hubs.items():
+                                        f2.write('%s %s\n'%(key, value))
                             except:
                                 print("Error! no centrality results found")
+                            
+                            
+                            
+                            
                 
                     
             

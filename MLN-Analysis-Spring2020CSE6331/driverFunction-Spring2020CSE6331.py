@@ -42,7 +42,7 @@ def main():
             
     with open(sys.argv[2], 'r') as analysisFile:
         count = 1
-        flag = 0
+        
         outputDir = {}
         for line in analysisFile:
             #comments are ignored
