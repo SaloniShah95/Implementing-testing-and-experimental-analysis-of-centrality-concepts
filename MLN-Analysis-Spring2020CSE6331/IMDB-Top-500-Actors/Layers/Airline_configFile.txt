@@ -1,0 +1,6 @@
+#MLN structure
+HeMLN = A
+# Base Directory(change path accordingly)
+BASE = S:\course work\Adv topics in databases\gitrepo\CSE6331_project\MLN-Analysis-Spring2020CSE6331\IMDB-Top-500-Actors\
+#airline intra layer edge file
+A = Layers\centralityTestData\Spirit.txt
