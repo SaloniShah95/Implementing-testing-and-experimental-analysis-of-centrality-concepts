@@ -19,20 +19,25 @@ def main():
         mlnFilePaths = {}
         #MLN file contaning data set is processed
         for line in mlnFile:
+            
             if line[0] == "#" or line[0] == "/":
                 continue
             else:
                 layers = line.strip().split("=")
+                
                 if layers[0].strip() == 'BASE':
                     break;
                 mlnFilePaths[layers[0].strip()] = layers[1].strip()
         BASE_DIR = layers[1].strip()
-
+        
         for line in mlnFile:
+            
             if line[0] == "#" or line[0] == "/":
                 continue
             else:
+                
                 layers = line.strip().split("=")
+                
                 mlnFilePaths[layers[0].strip()] = BASE_DIR + layers[1].strip()
 
         if 'HeMLN' in mlnFilePaths:
@@ -47,55 +52,56 @@ def main():
         
         outputDir = {}
         for line in analysisFile:
+            
             #comments are ignored
             if (line[0] == "#" or line[0]=="/"):
                 continue
             else:
+                #Output directory
                 if line[0] == "O":
                     temp= line.strip().split("=")
                     #print(temp)
                     outputDirString = temp[1]
                     outputDir[count] = outputDirString.strip()
                     #print(outputDir)
+                #Single hub layer    
                 elif line[0] == "S":
                     equation = line.strip().split(",")
+                    print("equation :",equation)
                     
+                    #When multiple layers are specified like 'A-D-M'
                     if "-" in equation[2]:
                         analysisObjective = equation[2].strip().split("-")
                     else:
                         analysisObjective = equation[2].strip()
                     numberOfLayers = len(analysisObjective)
                                         
-                    if "-" in equation[2]:
-                        layers = set(equation[2].strip().split("-"))
-                    else:
-                        layers = set(equation[2].strip())
-                        #print("***layers", layers)
-                        #print("**exp", analysisObjective)
-                        numberOfLayers = len(layers)
-                        #print("number of layers in analysis: ", numberOfLayers)
                     
-                    #checking for algorithm
+                    layers = set(equation[2].strip().split("-"))
+                    numberOfLayers = len(layers) 
                     Centrality = equation[1]
                                         
-                    #creating a centrality object
-                    for i in layers:
-                        print("Centrality: ",Centrality)
+                    
+                    for i in set(layers):
                         hubs = {}
+                        #creating a centrality object
                         cm = CentralityMeasure(edge_input=mlnFilePaths[i.strip()],centrality=Centrality)
                         C_values = cm.computeCentrality()
                         c_count = 0
                         _sum = 0
+                        #calculating min, max, average and sum of node values
                         for key in C_values:
                             c_count += 1
                             _sum += C_values[key]
                         average = _sum/c_count 
+                        #create a list of hubs based on average value
                         hubs = dict((k,v) for k,v in C_values.items() if v >= average )
                         x = len(hubs)
                         y = len(C_values)
-                        max_V = max(hubs.items(), key=operator.itemgetter(1))[0]
-                        min_V = min(hubs.items(), key=operator.itemgetter(1))[0]
+                        max_V = hubs[max(hubs.items(), key=operator.itemgetter(1))[0]]
+                        min_V = hubs[min(hubs.items(), key=operator.itemgetter(1))[0]]
                         sum_V = sum(hubs.values())
+                        
                         nameOfDataset = cm.dataset
                         
                         #Writing the output to the output directory

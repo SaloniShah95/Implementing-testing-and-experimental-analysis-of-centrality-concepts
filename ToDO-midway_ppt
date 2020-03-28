@@ -1,12 +1,52 @@
+python driverFunction-Spring2020CSE6331.py IMDB-Top-500-Actors\Layers\Airline_configFile.txt IMDB-Top-500-Actors\Analysis\analysisConfigFileAirline.txt
+python driverFunction-2.py IMDB-Top-500-Actors\Layers\Airline_configFile.txt IMDB-Top-500-Actors\Analysis\analysisConfigFileAirline.txt
+python driverFunction-Spring2020CSE6331.py IMDB-Top-500-Actors\Layers\mlnFileIMDB_top_500-v1.txt IMDB-Top-500-Actors\Analysis\analysisConfigFileIMDb_top_500.txt
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 AND composition: call Abhishek's code in C/C++ from out code 
 compare it with ground truth
-run the code on snap database
-find different graphs with different top eigen and betweeness
-Driver function 
-write the dictionary to an o/p file - all nodes in sorted (desc) 
 compare page rank with eigen vector closeness algorithm
 find complexity of both the algorithms
 
 measures:
 accuracy 
 neighbours
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+#output file: add headers - node_ID and value
+
+#format 2:
+#headers
+#hub: value > avg(all values)
+#avg, min, max
+
+#ground truth - generate layer apply centrality value, find more than avg 
+#o/p -> set of nodes
+
+algo -> intersection of hubs in both layers
+
+find jaccard b/w GT and algo
+
+run the code on snap database - 2-3 small datasets, directed
+
+design an algo that finds AND without actually generating an AND layer.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+degree  - divide by highest degree. normalize it
+#plot a graph, sort in dec order. 
+#x = node id y = measure value draw a line to see hubs
+#4 lines to see 4 centralities - analyse the difference between these 4. 
+--ask abhishek: centrality values and comparision, x and y exchanged? 
+
+ppt questions:
+1) hub or not in this centrality?
+2) what questions can be answered using this centrality
+3) why naive and should not be used and what is it?
+
+4 questions on fb graph
+
+naive - intersection of 2 hubs
+accuracy and precision 
+
+layers use airline/lightening
+
+graph,time,	 etc

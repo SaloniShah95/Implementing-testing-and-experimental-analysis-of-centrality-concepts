@@ -51,18 +51,26 @@ class CentralityMeasure(object):
                     nx.draw(G,with_labels=True)  # networkx draw()
                     plt.plot()'''
                     
-            if self.centrality.lower() == 'between'.lower():
+            if self.centrality.lower() == 'Between'.lower():
                 betweeness_values=nx.betweenness_centrality(G,normalized=True,weight='weight')
                 max_between = dict(sorted(betweeness_values.items(), key=operator.itemgetter(1), reverse=True))
                 #print("Max Betweeness vertices",max_between)
                 return max_between
-            else:
-                if self.centrality.lower() == 'eigen'.lower():
-                  eigen_centrality = nx.eigenvector_centrality(G)
-                  max_eigen = dict(sorted(eigen_centrality.items(), key=operator.itemgetter(1), reverse=True))
-                  #print("Max Eigen vertices",max_eigen)
-                  return max_eigen 
-            
+            elif self.centrality.lower() == 'Eigen'.lower():
+                eigen_centrality = nx.eigenvector_centrality(G)
+                max_eigen = dict(sorted(eigen_centrality.items(), key=operator.itemgetter(1), reverse=True))
+                #print("Max Eigen vertices",max_eigen)
+                return max_eigen
+            elif self.centrality.lower() == 'Close'.lower():
+                close_centrality = nx.closeness_centrality(G)
+                max_close = dict(sorted(close_centrality.items(), key=operator.itemgetter(1), reverse=True))
+                #print("Max closeness vertices",max_close)
+                return max_close
+            elif self.centrality.lower() == 'Degree'.lower():
+                degree_centrality = nx.degree_centrality(G)
+                degree_close = dict(sorted(degree_centrality.items(), key=operator.itemgetter(1), reverse=True))
+                #print("Max degree vertices",degree_close)
+                return degree_close
         else:
             print("Error: Sanity Check did not pass")
             
