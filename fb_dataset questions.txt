@@ -1,0 +1,13 @@
+1) what nodes have more number of contacts? - degree centrality
+2) how to spread information productively throughout the network? - closeness gives nodes with the short distance to other nodes
+3) Who is well connected throughout the network? if node is located on as many of the shortest paths as possible between pairs of other nodes - betweeness
+4) people with highly influencial friends. - eigen vector centrality.
+
+- Suppose we take facebook subgraphs of all the people belonging to facebook groups A and B
+1) find well connected people who are a part of group A and B 
+2) What nodes will contribute to 'fast' propogation of information about group A spread to people of group B or vice-versa? 
+Solution: take AND of layers A and B and find betweeness hubs.
+3) Who are the influencial\well-recommended people across groups A and B? 
+Solution: take AND of layers A and B and find Eigen hubs.
+4) What nodes will contribute to 'vast' propogation of information about group A spread to people of group B or vice-versa? 
+Solution: take AND of layers A and B and find closeness hubs.
