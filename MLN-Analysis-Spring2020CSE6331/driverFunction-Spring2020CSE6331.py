@@ -86,8 +86,8 @@ def main():
                         hubs = {}
                         #creating a centrality object
                         cm = CentralityMeasure(edge_input=mlnFilePaths[i.strip()],centrality=Centrality)
-                        C_values = cm.computeCentrality()
-                        c_count = 0
+                        C_values,time = cm.computeCentrality()
+                        '''c_count = 0
                         _sum = 0
                         #calculating min, max, average and sum of node values
                         for key in C_values:
@@ -95,7 +95,8 @@ def main():
                             _sum += C_values[key]
                         average = _sum/c_count 
                         #create a list of hubs based on average value
-                        hubs = dict((k,v) for k,v in C_values.items() if v >= average )
+                        hubs = dict((k,v) for k,v in C_values.items() if v >= average )'''
+                        hubs,average = cm.get_hubs(C_values);
                         x = len(hubs)
                         y = len(C_values)
                         max_V = hubs[max(hubs.items(), key=operator.itemgetter(1))[0]]
@@ -120,15 +121,21 @@ def main():
                             try:
                                 len(C_values)>0
                                 with open(directory_path+filename1,'w+') as f:
-                                    f.write(nameOfDataset+'\n\n')
+                                    f.write(nameOfDataset+'\n')
+                                    f.write('time taken: %s'%(time)+'\n\n')
                                     for key, value in C_values.items():
+                    
                                         f.write('%s\t%s\n'%(key, value))
                                     
                                     '''writer = csv.writer(f)
                                     writer.writerow(nameOfDataset)
                                     for key, value in C_values.items():
                                         writer.writerow([key, value])'''
-                                        
+                            except:
+                                print("\n\nError! no centrality results found")
+                                
+                            
+                            try:                                         
                                 print("writing the hubs to ",directory_path+filename2)
                                 with open(directory_path+filename2,'w+') as f2:
                                     f2.write(nameOfDataset)
@@ -140,7 +147,7 @@ def main():
                                     for key, value in hubs.items():
                                         f2.write('%s %s\n'%(key, value))
                             except:
-                                print("Error! no centrality results found")
+                              print("\n\nError while writing hubs")
                     
                 else:
                     equation = line.strip().split(",")

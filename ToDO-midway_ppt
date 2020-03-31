@@ -1,6 +1,6 @@
 python driverFunction-Spring2020CSE6331.py IMDB-Top-500-Actors\Layers\Airline_configFile.txt IMDB-Top-500-Actors\Analysis\analysisConfigFileAirline.txt
 python driverFunction-2.py IMDB-Top-500-Actors\Layers\Airline_configFile.txt IMDB-Top-500-Actors\Analysis\analysisConfigFileAirline.txt
-python driverFunction-Spring2020CSE6331.py IMDB-Top-500-Actors\Layers\mlnFileIMDB_top_500-v1.txt IMDB-Top-500-Actors\Analysis\analysisConfigFileIMDb_top_500.txt
+python driverFunction-Spring2020CSE6331.py IMDB-Top-500-Actors\Layers\Airline_configFile.txt IMDB-Top-500-Actors\Analysis\analysisConfigFileAirline.txt
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 AND composition: call Abhishek's code in C/C++ from out code 
 compare it with ground truth
@@ -35,7 +35,9 @@ degree  - divide by highest degree. normalize it
 #plot a graph, sort in dec order. 
 #x = node id y = measure value draw a line to see hubs
 #4 lines to see 4 centralities - analyse the difference between these 4. 
+
 --ask abhishek: centrality values and comparision, x and y exchanged? 
+-- class to be reusable in outside code?
 
 ppt questions:
 1) hub or not in this centrality?
@@ -46,7 +48,15 @@ ppt questions:
 
 naive - intersection of 2 hubs
 accuracy and precision 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-layers use airline/lightening
+-how much time does each CM takes? - plot a graph
+-map analysis question to centrality measure. think of 2-3 inferences. 
+-which CM has max separation? top 5.
+-why the cm reside in their spectrum on graph?
+-shift hub calculation to class?
+-put screen shots of config files
 
-layers use airline/lightening
-
-graph,time,	 etc
+New heuristic: compromise on accuracy.
+take 2 small graphs and dry run. 2 layers. 5 nodes per layer.
+explain on a sheet of paper

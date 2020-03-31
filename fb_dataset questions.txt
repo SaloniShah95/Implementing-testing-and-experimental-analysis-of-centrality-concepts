@@ -5,9 +5,9 @@
 
 - Suppose we take facebook subgraphs of all the people belonging to facebook groups A and B
 1) find well connected people who are a part of group A and B 
-2) What nodes will contribute to 'fast' propogation of information about group A spread to people of group B or vice-versa? 
+2) What nodes will contribute to being a mediator propogation of information about group A spread to people of group B or vice-versa? 
 Solution: take AND of layers A and B and find betweeness hubs.
 3) Who are the influencial\well-recommended people across groups A and B? 
 Solution: take AND of layers A and B and find Eigen hubs.
-4) What nodes will contribute to 'vast' propogation of information about group A spread to people of group B or vice-versa? 
+4) What nodes will contribute to 'fast' propogation of information about group A spread to people of group B or vice-versa? 
 Solution: take AND of layers A and B and find closeness hubs.

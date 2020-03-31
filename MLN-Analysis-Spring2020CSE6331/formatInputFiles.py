@@ -15,7 +15,8 @@ def intersection(lst1, lst2):
 def main():
     data_file = (sys.argv[1])
     path = "S:\\course work\\Adv topics in databases\\gitrepo\\CSE6331_project\\MLN-Analysis-Spring2020CSE6331\\IMDB-Top-500-Actors\\Layers\\centralityTestData\\"
-    data = pd.read_csv(path+data_file, sep=",", header=None)
+    separator = (sys.argv[3])
+    data = pd.read_csv(path+data_file, sep=separator, header=None)
     data.columns = ["V1","V2"]
 
     number_of_edges = len(data)

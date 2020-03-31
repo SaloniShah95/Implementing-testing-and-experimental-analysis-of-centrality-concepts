@@ -8,6 +8,7 @@ import os
 import networkx as nx
 import matplotlib.pyplot as plt
 import operator
+import time
 
 class CentralityMeasure(object):
     def __init__(self,edge_input,centrality):
@@ -52,29 +53,48 @@ class CentralityMeasure(object):
                     plt.plot()'''
                     
             if self.centrality.lower() == 'Between'.lower():
+                start = time.time();
                 betweeness_values=nx.betweenness_centrality(G,normalized=True,weight='weight')
+                time_taken = time.time()-start
                 max_between = dict(sorted(betweeness_values.items(), key=operator.itemgetter(1), reverse=True))
                 #print("Max Betweeness vertices",max_between)
-                return max_between
+                return max_between,time_taken
             elif self.centrality.lower() == 'Eigen'.lower():
+                start = time.time();
                 eigen_centrality = nx.eigenvector_centrality(G)
+                time_taken = time.time()-start
                 max_eigen = dict(sorted(eigen_centrality.items(), key=operator.itemgetter(1), reverse=True))
                 #print("Max Eigen vertices",max_eigen)
-                return max_eigen
+                return max_eigen, time_taken
             elif self.centrality.lower() == 'Close'.lower():
+                start = time.time();
                 close_centrality = nx.closeness_centrality(G)
+                time_taken = time.time()-start
                 max_close = dict(sorted(close_centrality.items(), key=operator.itemgetter(1), reverse=True))
                 #print("Max closeness vertices",max_close)
-                return max_close
+                return max_close, time_taken
             elif self.centrality.lower() == 'Degree'.lower():
+                start = time.time();
                 degree_centrality = nx.degree_centrality(G)
+                time_taken = time.time()-start
                 degree_close = dict(sorted(degree_centrality.items(), key=operator.itemgetter(1), reverse=True))
                 #print("Max degree vertices",degree_close)
-                return degree_close
+                return degree_close,time_taken
         else:
             print("Error: Sanity Check did not pass")
             
-    
+    def get_hubs(self,C_values):
+        c_count = 0
+        _sum = 0
+        hubs = {}
+        for key in C_values:
+            c_count += 1
+            _sum += C_values[key]
+            average = _sum/c_count 
+            #create a list of hubs based on average value
+            hubs = dict((k,v) for k,v in C_values.items() if v >= average )
+        return hubs,average
+        
     def sanity_check(self,edge_input):
         #edge_input="\centralityTestData\Spirit.txt"
         #path="\MLN-Analysis-Spring2020CSE6331\IMDB-Top-500-Actors\Layers" 
