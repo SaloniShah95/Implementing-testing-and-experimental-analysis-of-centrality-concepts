@@ -74,10 +74,28 @@ plt.plot(eigen_hubs_nodes,eigen_hubs_vals,color='red')
 plt.plot(close_hubs_nodes,close_hubs_vals,color='green')     
 plt.plot(degree_hubs_vals,degree_hubs_vals,color='yellow')   
         
+#intersection with betweenness
 be = intersection(between_hubs_nodes,eigen_hubs_nodes)
 bc = intersection(between_hubs_nodes,close_hubs_nodes)
 bd = intersection(between_hubs_nodes,degree_hubs_nodes)
-        
+
+#intersection with closeness
+ce = intersection(close_hubs_nodes,eigen_hubs_nodes)
+cb = intersection(close_hubs_nodes,between_hubs_nodes)
+
+cd = intersection(close_hubs_nodes,degree_hubs_nodes)
+cde = intersection(cd,eigen_hubs_nodes)
+bde = intersection(bd,eigen_hubs_nodes)
+bce = intersection(cb,eigen_hubs_nodes)
+bcd = intersection(bc,degree_hubs_nodes)
+
+
+#intersection with closeness
+ec = intersection(close_hubs_nodes,eigen_hubs_nodes)
+eb = intersection(eigen_hubs_nodes,between_hubs_nodes)
+ed = intersection(eigen_hubs_nodes,degree_hubs_nodes)
+
+bcde = intersection(bc,ed)        
 
 '''
 if __name__== "__main__":

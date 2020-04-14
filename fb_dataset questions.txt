@@ -1,13 +1,54 @@
 1) what nodes have more number of contacts? - degree centrality
+
 2) how to spread information productively throughout the network? - closeness gives nodes with the short distance to other nodes
-3) Who is well connected throughout the network? if node is located on as many of the shortest paths as possible between pairs of other nodes - betweeness
+
+3) Who mediates information throughout the network? if node is located on as many of the shortest paths as possible between pairs of other nodes - betweeness
+Should be closeness centrality according to me. bridge concept.
+
 4) people with highly influencial friends. - eigen vector centrality.
 
 - Suppose we take facebook subgraphs of all the people belonging to facebook groups A and B
-1) find well connected people who are a part of group A and B 
-2) What nodes will contribute to being a mediator propogation of information about group A spread to people of group B or vice-versa? 
-Solution: take AND of layers A and B and find betweeness hubs.
+1) find well connected people who are a part of group A and B
+Shouldn't degree centrality of composition give us this answer? 
+
+2) What nodes will contribute to 'fast' propogation of information about group A spread to people of group B or vice-versa? 
+Solution: take AND of layers A and B and find closeness hubs.
+
 3) Who are the influencial\well-recommended people across groups A and B? 
 Solution: take AND of layers A and B and find Eigen hubs.
-4) What nodes will contribute to 'fast' propogation of information about group A spread to people of group B or vice-versa? 
+
+4) What nodes will contribute to mediation of propogation of information about group A spread to people of group B or vice-versa? 
 Solution: take AND of layers A and B and find closeness hubs.
+and if it has the highest betweenness, it would mean that it has high influence on the control over netweork passing between the 2 groups
+suppose if I remove that node from one of the groups,it would disrupt information passing between the 2 groups.
+
+
+5) why naive and should not be used and what is it?
+To find hubs in the composition of the two layers, one way is to find the hubs of layer A, then find the hubs of layer B and then take the AND of these
+two sets. This way is ineffective because it leads to many false positives and false negatives
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+inferences from the FB-CM graph plot:
+1) 
+CM values for betweenness normalized by 2/((n-1)(n-2))
+CM values for closeness is normalized by the sum of minimum possible distances n-1.
+degree centrality values are normalized by dividing by the maximum possible degree in a simple graph n-1 where n is the number of nodes in G\
+ 
+ betweenness < Eigen < 	degree < closeness
+ 
+2)
+for normalization betweenness is divided by order(n^2). hence the values are the least
+whereas,for normalization of degree and closeness is done by order (n) term. where n = total number of nodes.
+
+3) difference of hubs   
+------------------------------------------------------------------------------------------------------------------------------------
+venn diagram
+for diff graphs - what over lap?
+naive accuracy - why not good values?
+OR and AND
+graph frst and then venn 
+
+good accuracy - with all the info sustained
+
+ 

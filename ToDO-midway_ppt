@@ -50,13 +50,16 @@ naive - intersection of 2 hubs
 accuracy and precision 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -layers use airline/lightening
--how much time does each CM takes? - plot a graph
--map analysis question to centrality measure. think of 2-3 inferences. 
+how much time does each CM takes? - plot a graph
+map analysis question to centrality measure. think of 2-3 inferences. 
 -which CM has max separation? top 5.
--why the cm reside in their spectrum on graph?
--shift hub calculation to class?
+
+shift hub calculation to class
 -put screen shots of config files
 
 New heuristic: compromise on accuracy.
 take 2 small graphs and dry run. 2 layers. 5 nodes per layer.
 explain on a sheet of paper
+---------------------------------------------------------------------------------------------------------------------------
+VENN DO IT ON DIFF
+-----------------------------------------------------------------------------------------------------------------------------------------
