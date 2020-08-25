@@ -1,0 +1,29 @@
+Layer 1 American
+Layer 1 Delta
+
+The Ground truth hubs are:
+16
+32
+51
+65
+156
+169
+189
+209
+231
+277
+
+The Mohit's heuristic hubs are:
+156
+247
+231
+16
+65
+70
+189
+51
+208
+173
+48
+209
+277
