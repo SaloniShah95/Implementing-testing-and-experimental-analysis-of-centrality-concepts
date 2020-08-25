@@ -1,8 +1,0 @@
-# Defines the basic composition sequence
-# Composition Type - AND, OR, NOT
-AND
-# 1st Layer
-./American
-# 2nd layer
-./Delta
-
