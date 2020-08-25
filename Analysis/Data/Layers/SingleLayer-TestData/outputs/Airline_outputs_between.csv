@@ -1,0 +1,3 @@
+,Layer,No. of nodes,avg_betweenness,graph diameter,clustering coefficient
+0,Allegiant,113,0.012398776779307749,5,0.14908145554167213
+1,Delta,213,0.005776919108019003,3,0.6176137315448601

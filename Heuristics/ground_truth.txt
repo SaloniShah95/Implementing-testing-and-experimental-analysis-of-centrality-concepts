@@ -1,0 +1,16 @@
+Layer 1 American
+Layer 1 Delta
+
+Average betweenness for ground truth 6.676
+
+The Ground truth hubs are:
+Hub:16 Betweenness:15.433
+Hub:32 Betweenness:7.643
+Hub:51 Betweenness:6.751
+Hub:65 Betweenness:15.268
+Hub:156 Betweenness:745.336
+Hub:169 Betweenness:15.842
+Hub:189 Betweenness:1062.549
+Hub:209 Betweenness:11.101
+Hub:231 Betweenness:13.400
+Hub:277 Betweenness:14.342

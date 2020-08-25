@@ -1,0 +1,7 @@
+#MLN structure
+HeMLN = A,F0,F414,G
+#Base Directory(change path accordingly)
+BASE = S:\course work\Adv topics in databases\gitrepo\CSE6331_project\Final_Submission\Data\
+#airline intra layer edge file
+A = Layers\centralityTestData\Spirit.txt
+#
